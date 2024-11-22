@@ -1,27 +1,22 @@
 import { gql } from 'graphql-tag';
 
 export const typeDefs = gql`
+  type Query {
+    suplierData: QuerySuppData!
+  }
 
-    type Query {
-        suplierData: QuerySuppData!
-    }
+  type Mutation {
+    BingoSupPac(width: Int!, weight: Int!): MutBing
+  }
 
-    type Mutation {
-        BingoSupPac(
-            width: Int!
-            weight: Int!
-        ): MutBing
-    }
+  type QuerySuppData {
+    result: String
+  }
 
-    type QuerySuppData {
-        result:String
-    }
+  type MutBing {
+    Weight: Int
+    Width: Int
+  }
 
-    type MutBing{
-        Weight:Int, 
-        Width:Int
-    }
-
-    scalar JSON
-
+  scalar JSON
 `;

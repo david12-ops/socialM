@@ -1,10 +1,17 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -17,6 +24,7 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  // eslint-disable-next-line no-use-before-define
   historyUserData: Array<QueryHistoryData>;
 };
 
@@ -27,21 +35,27 @@ export type QueryHistoryData = {
   suppData: Scalars['String'];
 };
 
-export type HistoryDataQueryVariables = Exact<{ [key: string]: never; }>;
+export type HistoryDataQueryVariables = Exact<{ [key: string]: never }>;
 
-
-export type HistoryDataQuery = { __typename?: 'Query', historyUserData: Array<{ __typename?: 'QueryHistoryData', dataForm: string, historyId: string, suppData: string }> };
-
+export type HistoryDataQuery = {
+  __typename?: 'Query';
+  historyUserData: Array<{
+    __typename?: 'QueryHistoryData';
+    dataForm: string;
+    historyId: string;
+    suppData: string;
+  }>;
+};
 
 export const HistoryDataDocument = gql`
-    query HistoryData {
-  historyUserData {
-    dataForm
-    historyId
-    suppData
+  query HistoryData {
+    historyUserData {
+      dataForm
+      historyId
+      suppData
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useHistoryDataQuery__
@@ -58,14 +72,35 @@ export const HistoryDataDocument = gql`
  *   },
  * });
  */
-export function useHistoryDataQuery(baseOptions?: Apollo.QueryHookOptions<HistoryDataQuery, HistoryDataQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<HistoryDataQuery, HistoryDataQueryVariables>(HistoryDataDocument, options);
-      }
-export function useHistoryDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HistoryDataQuery, HistoryDataQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<HistoryDataQuery, HistoryDataQueryVariables>(HistoryDataDocument, options);
-        }
+export function useHistoryDataQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    HistoryDataQuery,
+    HistoryDataQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<HistoryDataQuery, HistoryDataQueryVariables>(
+    HistoryDataDocument,
+    options,
+  );
+}
+export function useHistoryDataLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    HistoryDataQuery,
+    HistoryDataQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<HistoryDataQuery, HistoryDataQueryVariables>(
+    HistoryDataDocument,
+    options,
+  );
+}
 export type HistoryDataQueryHookResult = ReturnType<typeof useHistoryDataQuery>;
-export type HistoryDataLazyQueryHookResult = ReturnType<typeof useHistoryDataLazyQuery>;
-export type HistoryDataQueryResult = Apollo.QueryResult<HistoryDataQuery, HistoryDataQueryVariables>;
+export type HistoryDataLazyQueryHookResult = ReturnType<
+  typeof useHistoryDataLazyQuery
+>;
+export type HistoryDataQueryResult = Apollo.QueryResult<
+  HistoryDataQuery,
+  HistoryDataQueryVariables
+>;

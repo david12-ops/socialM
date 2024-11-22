@@ -1,7 +1,7 @@
-import { queries } from './queryQueries'
-import { mutatioms } from './mutationQueries'
+import { mutatioms } from './mutation-queries';
+import { queries } from './query-queries';
 
 export const resolvers = {
-    Query: queries,
-    Mutation: mutatioms
+  Query: queries,
+  Mutation: mutatioms,
 };

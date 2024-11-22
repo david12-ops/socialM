@@ -40,4 +40,9 @@ firebase/config.ts
 firebase/firebase-admin-config.ts
 codegen.yml
 utility/dbUtils.ts
+package-lock.json
+package.json
+tsconfig.json
+.vscode
+generated
 

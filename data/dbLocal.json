@@ -1,0 +1,11 @@
+{
+    "users": [
+        {
+            "ja": {
+                "photos": 1,
+                "likes": 2,
+                "subscribers": 3
+            }
+        }
+    ]
+}

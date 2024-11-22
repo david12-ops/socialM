@@ -1,6 +1,6 @@
-'use client'
+'use client';
+
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
-import Image from 'next/image';
 import React, {
   FC,
   PropsWithChildren,
@@ -42,12 +42,7 @@ export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Image
-            width={400}
-            height={400}
-            src={'/favicon.ico'}
-            alt="loading"
-          ></Image>
+          <div>Loading...</div>
         </div>
       ) : (
         children

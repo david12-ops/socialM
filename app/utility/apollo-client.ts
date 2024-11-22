@@ -12,9 +12,9 @@ import { authUtils } from '../../firebase/auth-utils';
 const isServer = typeof window === 'undefined';
 // source: https://github.com/shshaw/next-apollo-ssr
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//// @ts-expect-error
+/// / @ts-expect-error
 
-// eslint-disable-next-line no-underscore-dangle
+const credentials = 'same-origin';
 
 let CLIENT: ApolloClient<unknown>;
 const endpoint = '/api/graphql';
@@ -50,13 +50,13 @@ const httpLink = (): HttpLink => {
   if (typeof window === 'undefined') {
     return new HttpLink({
       uri: endpoint,
-      credentials: 'same-origin',
+      credentials,
       headers: {},
     });
   }
   return new HttpLink({
     uri: endpoint,
-    credentials: 'same-origin',
+    credentials,
     headers: {
       // every header should be allowed in CORS
     },
@@ -65,15 +65,15 @@ const httpLink = (): HttpLink => {
 
 type ApolloClientProps =
   | {
-    forceNew?: false;
-    logout?: VoidFunction;
-  }
+      forceNew?: false;
+      logout?: VoidFunction;
+    }
   | {
-    forceNew: true;
-  };
+      forceNew: true;
+    };
 
 export function getApolloClient(parameters: ApolloClientProps) {
-  //bude muset prebirat pro cache, pro kazdou stránku
+  // bude muset prebirat pro cache, pro kazdou stránku
   const forceNew = parameters?.forceNew;
   const logout = parameters.forceNew ? undefined : parameters.logout;
 
@@ -82,13 +82,13 @@ export function getApolloClient(parameters: ApolloClientProps) {
       uri: endpoint,
       cache: new InMemoryCache(),
       ssrMode: isServer,
-      credentials: 'same-origin',
+      credentials,
       link: ApolloLink.from(
         isServer || !logout
           ? [oAuthLink(), httpLink()]
           : [oAuthLink(), logoutLink(logout), httpLink()],
       ),
-    })
+    });
     /**
       // Default options to disable SSR for all queries.
       defaultOptions: {
