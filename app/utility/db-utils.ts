@@ -7,7 +7,7 @@ const filePath = path.join(process.cwd(), 'data', 'dbLocal.json');
 
 export const readJsonFile = async (): Promise<Data | object> => {
   try {
-    const data = await fs.readFile(filePath, 'utf8'); console.log("jjj", typeof data)
+    const data = await fs.readFile(filePath, 'utf8');
 
     return JSON.parse(data) as Data;
   } catch (error: any) {

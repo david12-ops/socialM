@@ -27,12 +27,6 @@ export default function Home() {
     operation: '',
   });
 
-  if (supp.loading) {
-    console.warn('cekej');
-  } else {
-    console.warn(supp.data?.suplierData.result);
-  }
-
   const handleSubmition = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
