@@ -1,3 +1,4 @@
+import { dividerClasses } from '@mui/material';
 import { FetchComp } from '../components/home-comp';
 import { Data, DataUser, User } from '../types';
 
@@ -32,8 +33,13 @@ const deleteMethod = async (data: any) => {
     const response = await postMetod(data, 'DELETE');
     const result = response.ok
       ? { response: (await response.json()).response.result }
-      : { response: err };
-    return <div>{result.response}</div>;
+      : { response: { error: err } };
+
+    return result.response.hasOwnProperty("error") ? (
+      <div>{result.response.error}</div>
+    ) : <div>
+      <h4>Name: {result.response}</h4>
+    </div>
   }
   return <div>Username need to be provided</div>;
 };
@@ -42,23 +48,46 @@ const createMethod = async (data: any) => {
   const response = await postMetod(data, 'CREATE');
   const result = response.ok
     ? { response: (await response.json()).response.result }
-    : { response: err };
-  return typeof result.response === 'object' ? (
-    <div>{JSON.stringify(result.response)}</div>
-  ) : (
-    <div>{result.response}</div>
-  );
+    : { response: { error: err } };
+
+  if (result.response.hasOwnProperty("error")) {
+    return <div>{result.response.error}</div>
+  }
+
+  const key = Object.keys(result.response)[0]
+  return (
+    <div>
+      <h4>Name: {key}</h4>
+      <div>
+        <p>likes: {result.response[key].likes}</p>
+        <p>Count of photos: {result.response[key].photos}</p>
+        <p>Count of subscribers: {result.response[key].subscribers}</p>
+      </div>
+    </div>
+  )
+
 };
 
 const updateMethod = async (data: any) => {
   const response = await postMetod(data, 'UPDATE');
   const result = response.ok
     ? { response: (await response.json()).response.result }
-    : { response: err };
-  return typeof result.response === 'object' ? (
-    <div>{JSON.stringify(result.response)}</div>
-  ) : (
-    <div>{result.response}</div>
+    : { response: { error: err } };
+
+  if (result.response.hasOwnProperty("error")) {
+    return <div>{result.response.error}</div>
+  }
+
+  const key = Object.keys(result.response)[0]
+  return (
+    <div>
+      <h4>New name: {key}</h4>
+      <div>
+        <p>likes: {result.response[key].likes}</p>
+        <p>Count of photos: {result.response[key].photos}</p>
+        <p>Count of subscribers: {result.response[key].subscribers}</p>
+      </div>
+    </div>
   );
 };
 
