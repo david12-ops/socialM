@@ -1,101 +1,138 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { readJsonFile, writeJsonFile } from '../../app/utility/db-utils'
-import { Data, DataUser, PostData } from '@/app/types';
+import { Data, DataUser, PostData, User } from '@/app/types';
+import { use } from 'react';
 
-const checkData = async (data: PostData, res: NextApiResponse) => {
-  const headers = { 'Content-Type': 'application/json' }
-  const err = `Required data do not provided by user`
-  const { likes, name, subscribers, photos, nameNew } = data.data
+const err = `Required data do not provided by user`
 
-  switch (data.method) {
-    case "CREATE": {
-      if (!likes || !name || !subscribers || !photos) {
-        res.writeHead(405, headers);
-        res.end(JSON.stringify({ response: err }));
-        return res
-      }
-      break;
+const validate = (providedData: Data, data: DataUser, method: "CREATE" | "UPDATE") => {
+  if (method === "CREATE") {
+    return providedData.users.some((user) => user[data.name as string])
+  }
+
+  if (method === "UPDATE") {
+    const otherusers = providedData.users.filter((user) => !user[data.name as string])
+    return otherusers.some((user) => user[data.nameNew as string])
+  }
+}
+
+const sendResponse = (res: NextApiResponse, code: number, result: any, responseType: 'ERROR' | 'SUCCESS') => {
+  const errormsg = { error: { code, result } }
+  const successmsg = { response: { code, result } }
+  responseType === 'ERROR' ? res.status(code).json(errormsg) : res.status(code).json(successmsg)
+};
+
+const createMethod = async (data: DataUser, provideData: Data, res: NextApiResponse): Promise<User | undefined> => {
+
+  if (!data.likes || !data.name || !data.subscribers || !data.photos) {
+    sendResponse(res, 400, err, 'ERROR')
+    return
+  }
+
+  if (validate(provideData, data, "CREATE")) {
+    sendResponse(res, 400, "Bad input, user already exists", 'ERROR')
+    return
+  }
+
+  const user = {
+    [data.name as string]: {
+      photos: data.photos, likes: data.likes, subscribers: data.subscribers
     }
-    case "DELETE": {
-      if (!name) {
-        res.writeHead(405, headers);
-        res.end(JSON.stringify({ response: err }));
-        return res
-      }
-      break;
-    }
-    case "UPDATE": {
-      if (!likes || !name || !subscribers || !photos || !nameNew) {
-        res.writeHead(405, headers);
-        res.end(JSON.stringify({ response: err }));
-        return res
-      }
-      break;
-    }
-    default: {
-      res.writeHead(405, headers);
-      res.end(`Method ${data.method} Not Allowed`);
-      return res;
-    }
+  }
+
+  const newData: { users: User[] } = { users: [] }
+  newData.users = [...provideData.users, user]
+  await writeJsonFile(newData)
+  return user
+};
+
+const deleteMethod = async (data: DataUser, provideData: Data, res: NextApiResponse): Promise<string | undefined> => {
+  if (!data.name) {
+    sendResponse(res, 400, err, 'ERROR')
+    return
+  }
+
+  if (provideData.users.some((user) => user[data.name as string])) {
+    const newData: { users: User[] } = { users: [] }
+    newData.users = provideData.users.filter((user) => !user[data.name as string])
+    await writeJsonFile(newData)
+    return data.name
+  } else {
+    sendResponse(res, 400, "User to delete not found", 'ERROR')
   }
 };
 
+const updateMethod = async (data: DataUser, provideData: Data, res: NextApiResponse): Promise<User | undefined> => {
+  if (!data.likes || !data.name || !data.subscribers || !data.photos || !data.nameNew) {
+    sendResponse(res, 400, err, 'ERROR')
+    return
+  }
 
-const createMethod = async (data: DataUser, provideData: Data) => {
+  if (validate(provideData, data, "UPDATE")) {
+    sendResponse(res, 400, "Bad input, user already exists", 'ERROR')
+    return
+  }
+
+  const newData: { users: User[] } = { users: [] }
+  const user = {
+    [data.nameNew as string]: {
+      photos: data.photos, likes: data.likes, subscribers: data.subscribers
+    }
+  }
+
+  if (provideData.users.some((user) => user[data.name as string])) {
+    newData.users = [...provideData.users.filter((user) => !user[data.name as string]), user]
+    await writeJsonFile(newData)
+    return user
+  } else {
+    sendResponse(res, 400, "User to update not found", 'ERROR')
+  }
 
 };
 
-const deleteMethod = async (data: DataUser, provideData: Data) => {
-
-};
-const updateMethod = async (data: DataUser, provideData: Data) => {
-
-};
-
-const handlePostReq = (data: PostData, res: NextApiResponse, provideData: Data): object | NextApiResponse => {
+const handlePostReq = (data: PostData, res: NextApiResponse, provideData: Data) => {
   switch (data.method) {
     case "CREATE": {
-      return {}
+      return createMethod(data.data, provideData, res)
     }
     case "DELETE": {
-      return {}
+      return deleteMethod(data.data, provideData, res)
     }
     case "UPDATE": {
-      return {}
+      return updateMethod(data.data, provideData, res)
     }
     default: {
-      res.writeHead(405, { 'Content-Type': 'application/json' });
-      res.end(`Method ${data.method} Not Allowed`);
-      return res;
+      sendResponse(res, 405, `Method ${data.method} Not Allowed`, 'ERROR')
     }
   }
 }
 
 // eslint-disable-next-line import/no-default-export
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const headers = { 'Content-Type': 'application/json' };
-
   const { method, body } = req;
-  const data = await readJsonFile()
+  const data = body as PostData
+  try {
+    const providedData = await readJsonFile() as Data
 
-  checkData(body as PostData, res)
-
-  switch (method) {
-    case 'GET': {
-      res.writeHead(200, headers);
-      res.end(JSON.stringify(data));
-      return res;
+    switch (method) {
+      case 'GET': {
+        sendResponse(res, 200, providedData, 'SUCCESS')
+        break;
+      }
+      case 'POST': {
+        const code = data.method === "DELETE" || data.method === "UPDATE" ? 200 : 201
+        const response = await handlePostReq(data, res, providedData)
+        if (response) {
+          sendResponse(res, code, response, 'SUCCESS')
+        }
+        break;
+      }
+      default: {
+        sendResponse(res, 405, `Method ${method} Not Allowed`, 'ERROR')
+      }
     }
-    case 'POST': {
-      const response = handlePostReq(body as PostData, res, data as Data)
-      res.writeHead(200, headers);
-      res.end(`jsem tu ${JSON.stringify({ response })}`);
-      return 'statusCode' in response ? response : res;
-    }
-    default: {
-      res.writeHead(405, headers);
-      res.end(`Method ${method} Not Allowed`);
-      return res;
-    }
+  }
+  catch (error) {
+    sendResponse(res, 500, `Unexpected error occured`, 'ERROR')
   }
 }

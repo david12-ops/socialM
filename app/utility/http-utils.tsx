@@ -27,12 +27,11 @@ const postMetod = async (
 };
 
 const deleteMethod = async (data: any) => {
-  // funkcni
   const userData = data as DataUser;
   if (userData.name) {
     const response = await postMetod(data, 'DELETE');
-    const result: { response: string } = response.ok
-      ? await response.json()
+    const result = response.ok
+      ? { response: (await response.json()).response.result }
       : { response: err };
     return <div>{result.response}</div>;
   }
@@ -40,10 +39,9 @@ const deleteMethod = async (data: any) => {
 };
 
 const createMethod = async (data: any) => {
-  // funkcni
   const response = await postMetod(data, 'CREATE');
-  const result: { response: User | string } = response.ok
-    ? await response.json()
+  const result = response.ok
+    ? { response: (await response.json()).response.result }
     : { response: err };
   return typeof result.response === 'object' ? (
     <div>{JSON.stringify(result.response)}</div>
@@ -53,10 +51,9 @@ const createMethod = async (data: any) => {
 };
 
 const updateMethod = async (data: any) => {
-  // funkcni
   const response = await postMetod(data, 'UPDATE');
-  const result: { response: User | string } = response.ok
-    ? await response.json()
+  const result = response.ok
+    ? { response: (await response.json()).response.result }
     : { response: err };
   return typeof result.response === 'object' ? (
     <div>{JSON.stringify(result.response)}</div>
@@ -75,7 +72,7 @@ const getMethod = async () => {
     },
   });
 
-  const result = (await response.json()) as Data;
+  const result = (await response.json()).response.result as Data;
 
   return result ? <FetchComp data={result} /> : <div>Loading...</div>;
 };
