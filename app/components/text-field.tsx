@@ -40,7 +40,7 @@ export const MyCompTextField: React.FC<TextFieldProps> = ({
       required={required}
       id={idComp}
       sx={{ m: 1, width: '25ch' }}
-      onChange={(e) => { funcComp(e.target.value); error.set(undefined) }}
+      onChange={(e) => funcComp(e.target.value)}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">{placeholderComp}</InputAdornment>
@@ -58,7 +58,7 @@ export const MyCompTextField: React.FC<TextFieldProps> = ({
       helperText={error.get()}
       error
       sx={{ m: 1, width: '25ch' }}
-      onChange={(e) => { funcComp(e.target.value); error.set(undefined) }}
+      onChange={(e) => funcComp(e.target.value)}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">{placeholderComp}</InputAdornment>

@@ -3,7 +3,7 @@
 import { useHookstate } from '@hookstate/core';
 import Image from 'next/image';
 // import styles from './Home.module.css';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import { useSuppDataQuery } from '@/generated/graphql';
 
@@ -12,7 +12,7 @@ import { fetchData } from './utility/http-utils';
 import { validationFormData } from './utility/validations-utils'
 import { ErrorTextFileds, FormDataSetter } from './types';
 
-// vymyslet errory pro textfields a select componentu - jsou, ale nezcervenaji
+//bug - pri chybe nektere textfield nedelaji onchange a nepusti me to na jinou operaci
 
 // eslint-disable-next-line import/no-default-export
 export default function Home() {

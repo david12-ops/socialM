@@ -55,7 +55,7 @@ export const Form: React.FC<Props> = ({
           typeComp="text"
           idComp={idComp}
           labelComp={labels.name}
-          funcComp={(e) => stateFormData.name.set(e.trim())}
+          funcComp={(e) => { stateFormData.name.set(e.trim()); stateErrs.errName.set(undefined) }}
           error={stateErrs.errName}
         />
       );
@@ -66,7 +66,7 @@ export const Form: React.FC<Props> = ({
           typeComp="text"
           idComp={idComp}
           labelComp={labels.newName}
-          funcComp={(e) => stateFormData.nameNew.set(e.trim())}
+          funcComp={(e) => { stateFormData.nameNew.set(e.trim()); stateErrs.errNameNew.set(undefined) }}
           error={stateErrs.errNameNew}
         />
       );
@@ -77,7 +77,7 @@ export const Form: React.FC<Props> = ({
           typeComp="number"
           idComp={idComp}
           labelComp={labels.likes}
-          funcComp={(e) => stateFormData.likes.set(IsInt(e, 0))}
+          funcComp={(e) => { stateFormData.likes.set(IsInt(e, 0)); stateErrs.errLikes.set(undefined) }}
           error={stateErrs.errLikes}
         />
       );
@@ -88,7 +88,7 @@ export const Form: React.FC<Props> = ({
           typeComp="number"
           idComp={idComp}
           labelComp={labels.photos}
-          funcComp={(e) => stateFormData.photos.set(IsInt(e, 0))}
+          funcComp={(e) => { stateFormData.photos.set(IsInt(e, 0)); stateErrs.errPhotos.set(undefined) }}
           error={stateErrs.errPhotos}
         />
       );
@@ -99,7 +99,7 @@ export const Form: React.FC<Props> = ({
           typeComp="number"
           idComp={idComp}
           labelComp={labels.subs}
-          funcComp={(e) => stateFormData.subs.set(IsInt(e, 0))}
+          funcComp={(e) => { stateFormData.subs.set(IsInt(e, 0)); stateErrs.errSubs.set(undefined) }}
           error={stateErrs.errSubs}
         />
       );
@@ -115,16 +115,16 @@ export const Form: React.FC<Props> = ({
         />
       );
     },
-    [operation],
+    [operation, stateErrs],
   );
 
   return (
     <form
       style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
       onSubmit={submitFunc}
-      onChange={debounce(() => {
+      onChange={() =>
         onChangeFunc(statePopUpWindowErr, statePopUpWindowData)
-      }, 300)}
+      }
     >
       <div>
         <SelectComponent
