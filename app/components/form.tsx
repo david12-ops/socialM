@@ -1,33 +1,32 @@
 import { State } from '@hookstate/core';
-import { Button } from '@mui/material';
+import { Button, debounce } from '@mui/material';
 import * as React from 'react';
-import { useCallback } from 'react';
+import { Dispatch, useCallback } from 'react';
 
 import { SelectComponent } from './select-comp';
 import { MyCompTextField } from './text-field';
 import { PostBodyForm } from './textfields-form';
+import { ErrorTextFileds, FormDataSetter } from '../types';
+import { IsInt } from "../utility/validations-utils"
+
+const onChangeFunc = (statePopUpWindowErr: any, statePopUpWindowData: any) => {
+  statePopUpWindowErr(undefined);
+  statePopUpWindowData(undefined);
+}
 
 type Props = {
-  setter: State<
-    {
-      name: string;
-      newName: string;
-      like: number;
-      photos: number;
-      subs: number;
-      operation: string;
-    },
-    object
-  >;
-  setterData: React.Dispatch<React.SetStateAction<JSX.Element | undefined>>;
-  setterErr: React.Dispatch<React.SetStateAction<JSX.Element | undefined>>;
+  stateFormData: State<FormDataSetter, {}>,
+  statePopUpWindowData: Dispatch<React.SetStateAction<JSX.Element | undefined>>;
+  statePopUpWindowErr: Dispatch<React.SetStateAction<JSX.Element | undefined>>;
   submitFunc: (e: React.FormEvent) => Promise<void>;
+  stateErrs: State<ErrorTextFileds, {}>
 };
 
 export const Form: React.FC<Props> = ({
-  setter,
-  setterData,
-  setterErr,
+  stateFormData,
+  statePopUpWindowData,
+  statePopUpWindowErr,
+  stateErrs,
   submitFunc,
 }) => {
   const idComp = 'outlined-required';
@@ -45,67 +44,69 @@ export const Form: React.FC<Props> = ({
     { value: 'UPDATE', label: 'Update profile' },
   ];
 
-  const textFieldName = (
-    <MyCompTextField
-      required={true}
-      typeComp="text"
-      idComp={idComp}
-      labelComp={labels.name}
-      funcComp={(e) => setter.name.set(e.trim())}
-      errorComp=""
-    />
-  );
-
-  const textFieldNewName = (
-    <MyCompTextField
-      required={false}
-      typeComp="text"
-      idComp={idComp}
-      labelComp={labels.newName}
-      funcComp={(e) => setter.newName.set(e.trim()) ?? undefined}
-      errorComp=""
-    />
-  );
-
-  const textFieldLikes = (
-    <MyCompTextField
-      required={true}
-      typeComp="number"
-      idComp={idComp}
-      labelComp={labels.likes}
-      funcComp={(e) => setter.like.set(Number.parseInt(e.trim(), 10) || 0)}
-      errorComp=""
-    />
-  );
-
-  const textFieldPhotos = (
-    <MyCompTextField
-      required={true}
-      typeComp="number"
-      idComp={idComp}
-      labelComp={labels.photos}
-      funcComp={(e) => setter.photos.set(Number.parseInt(e.trim(), 10) || 0)}
-      errorComp=""
-    />
-  );
-
-  const textFieldSubs = (
-    <MyCompTextField
-      required={true}
-      typeComp="number"
-      idComp={idComp}
-      labelComp={labels.subs}
-      funcComp={(e) => setter.subs.set(Number.parseInt(e.trim(), 10) || 0)}
-      errorComp=""
-    />
-  );
+  const operation = stateFormData.operation.get()
 
   const postBody = useCallback(
-    (operation: string) => {
-      const method = operation as 'CREATE' | 'DELETE' | 'GET' | 'UPDATE';
+    (operation: string | null) => {
+
+      const textFieldName = (
+        <MyCompTextField
+          required={true}
+          typeComp="text"
+          idComp={idComp}
+          labelComp={labels.name}
+          funcComp={(e) => stateFormData.name.set(e.trim())}
+          error={stateErrs.errName}
+        />
+      );
+
+      const textFieldNewName = (
+        <MyCompTextField
+          required={false}
+          typeComp="text"
+          idComp={idComp}
+          labelComp={labels.newName}
+          funcComp={(e) => stateFormData.nameNew.set(e.trim())}
+          error={stateErrs.errNameNew}
+        />
+      );
+
+      const textFieldLikes = (
+        <MyCompTextField
+          required={true}
+          typeComp="number"
+          idComp={idComp}
+          labelComp={labels.likes}
+          funcComp={(e) => stateFormData.likes.set(IsInt(e, 0))}
+          error={stateErrs.errLikes}
+        />
+      );
+
+      const textFieldPhotos = (
+        <MyCompTextField
+          required={true}
+          typeComp="number"
+          idComp={idComp}
+          labelComp={labels.photos}
+          funcComp={(e) => stateFormData.photos.set(IsInt(e, 0))}
+          error={stateErrs.errPhotos}
+        />
+      );
+
+      const textFieldSubs = (
+        <MyCompTextField
+          required={true}
+          typeComp="number"
+          idComp={idComp}
+          labelComp={labels.subs}
+          funcComp={(e) => stateFormData.subs.set(IsInt(e, 0))}
+          error={stateErrs.errSubs}
+        />
+      );
+
       return (
         <PostBodyForm
-          operation={method}
+          operation={operation}
           textfieldName={textFieldName}
           textfieldNewName={textFieldNewName}
           textfieldLike={textFieldLikes}
@@ -114,29 +115,29 @@ export const Form: React.FC<Props> = ({
         />
       );
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setter.operation],
+    [operation],
   );
 
   return (
     <form
       style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
       onSubmit={submitFunc}
-      onChange={() => {
-        setterErr(undefined);
-        setterData(undefined);
-      }}
+      onChange={debounce(() => {
+        onChangeFunc(statePopUpWindowErr, statePopUpWindowData)
+      }, 300)}
     >
       <div>
         <SelectComponent
           options={options}
           paragraph="Choose operation"
-          state={setter.operation}
-          error=""
-          setterData={setterData}
+          state={stateFormData.operation}
+          error={stateErrs.errOperation.get()}
+          statePopUpWindowData={statePopUpWindowData}
+          statePopUpWindowErr={statePopUpWindowErr}
+          stateErrs={stateErrs}
         />
       </div>
-      {postBody(setter.operation.get())}
+      {postBody(operation)}
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button type="submit">Submit</Button>
       </div>

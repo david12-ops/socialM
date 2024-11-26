@@ -1,5 +1,5 @@
 type Props = {
-  operation: 'CREATE' | 'UPDATE' | 'DELETE' | 'GET';
+  operation: null | string;
   textfieldName: React.ReactNode;
   textfieldNewName: React.ReactNode;
   textfieldLike: React.ReactNode;

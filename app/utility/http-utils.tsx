@@ -1,6 +1,5 @@
-import { dividerClasses } from '@mui/material';
 import { FetchComp } from '../components/home-comp';
-import { Data, DataUser, User } from '../types';
+import { Data, DataUser } from '../types';
 
 const err = 'Not successfull';
 
@@ -8,10 +7,10 @@ const checkDataPost = async (
   data: any,
   method: (data: any) => Promise<JSX.Element>,
 ): Promise<JSX.Element> => {
-  if (data && data.likes && data.name && data.photos && data.subscribers) {
+  if (data && data.likes !== undefined && data.name !== undefined && data.photos !== undefined && data.subscribers !== undefined) {
     return method(data);
   }
-  return <div>Data must be provided</div>;
+  return <div>Data is invalid or not provided</div>;
 };
 
 const postMetod = async (

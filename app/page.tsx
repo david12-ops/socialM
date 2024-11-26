@@ -9,50 +9,67 @@ import { useSuppDataQuery } from '@/generated/graphql';
 
 import { Form } from './components/form';
 import { fetchData } from './utility/http-utils';
+import { validationFormData } from './utility/validations-utils'
+import { ErrorTextFileds, FormDataSetter } from './types';
 
-// vymyslet errory pro textfields a select componentu
+// vymyslet errory pro textfields a select componentu - jsou, ale nezcervenaji
 
 // eslint-disable-next-line import/no-default-export
 export default function Home() {
-  const [data, setData] = useState<JSX.Element>();
-  const [error, setError] = useState<JSX.Element>();
+  const [data, setPopUpWindowData] = useState<JSX.Element>();
+  const [error, setPopUpWindowError] = useState<JSX.Element>();
+
   const supp = useSuppDataQuery();
 
-  const setFormData = useHookstate({
-    name: '',
-    newName: '',
-    like: 0,
-    photos: 0,
-    subs: 0,
-    operation: '',
+
+  const setFormData = useHookstate<FormDataSetter>({
+    name: undefined,
+    nameNew: undefined,
+    likes: undefined,
+    photos: undefined,
+    subs: undefined,
+    operation: "",
   });
 
-  const handleSubmition = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
+  const errorsForm = useHookstate<ErrorTextFileds>({
+    errOperation: undefined,
+    errLikes: undefined,
+    errNameNew: undefined,
+    errName: undefined,
+    errPhotos: undefined,
+    errSubs: undefined
+  })
+
+  const handleSubmition = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const validation = validationFormData({ name: setFormData.name.get(), nameNew: setFormData.nameNew.get(), subs: setFormData.subs.get(), operation: setFormData.operation.get(), photos: setFormData.photos.get(), likes: setFormData.likes.get() })
+    const notValid = validation.errLikes || validation.errName || validation.errNameNew || validation.errOperation || validation.errPhotos || validation.errSubs
+    if (notValid) {
+      setPopUpWindowError(<div>Bad input, data has no allowed form (invalid) or not provided</div>);
+      errorsForm.set(validation)
+    } else {
       if (
         ['DELETE', 'CREATE', 'GET', 'UPDATE'].includes(
-          setFormData.operation.get(),
+          setFormData.operation.get() ?? '',
         )
       ) {
-        setError(undefined);
+        setPopUpWindowError(undefined);
         const updatedData = await fetchData(
           setFormData.operation.get() as 'DELETE' | 'CREATE' | 'GET' | 'UPDATE',
           {
             name: setFormData.name.get(),
-            nameNew: setFormData.newName.get(),
-            likes: setFormData.like.get(),
+            nameNew: setFormData.nameNew.get(),
+            likes: setFormData.likes.get(),
             photos: setFormData.photos.get(),
             subscribers: setFormData.subs.get(),
           },
         );
-        setData(updatedData);
+        setPopUpWindowData(updatedData);
       } else {
-        setError(<div>Select only from allowed operations</div>);
+        setPopUpWindowError(<div>Select only from allowed operations</div>);
       }
-    },
-    [setFormData],
-  );
+    }
+  }
 
   return (
     <div
@@ -75,10 +92,11 @@ export default function Home() {
         >
           {error || data}
           <Form
-            setter={setFormData}
+            stateFormData={setFormData}
             submitFunc={handleSubmition}
-            setterData={setData}
-            setterErr={setError}
+            statePopUpWindowData={setPopUpWindowData}
+            statePopUpWindowErr={setPopUpWindowError}
+            stateErrs={errorsForm}
           />
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <a

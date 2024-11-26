@@ -1,3 +1,5 @@
+import { State } from "@hookstate/core";
+
 export type User = {
   [key: string]: {
     photos: number;
@@ -36,8 +38,26 @@ export type TextFieldProps = {
   labelComp: { err: string; withoutErr: string };
   placeholderComp?: string;
   funcComp: (inputVal: string) => void;
-  errorComp: string;
+  error: State<string | undefined, {}>;
   valueComp?: string | number;
   helpTexterComp?: string;
   required: boolean | undefined;
 };
+
+export type FormDataSetter = {
+  name: string | undefined;
+  nameNew: string | undefined;
+  likes: number | undefined;
+  photos: number | undefined;
+  subs: number | undefined;
+  operation: string | null;
+}
+
+export type ErrorTextFileds = {
+  errName: string | undefined;
+  errNameNew: string | undefined;
+  errLikes: string | undefined;
+  errPhotos: string | undefined;
+  errSubs: string | undefined;
+  errOperation: string | undefined;
+}

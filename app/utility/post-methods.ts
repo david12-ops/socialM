@@ -1,124 +1,91 @@
-import { Data, DataUser, User } from '../types';
+import { NextApiResponse } from "next";
+import { Data, DataUser, User } from "../types";
+import { writeJsonFile } from "./db-utils";
 
-const headers = { 'Content-Type': 'application/json' };
-const err = 'Bad request, missing required data';
+const err = `Required data do not provided by user`
 
-export const deleteMethod = (
-  data: Data | undefined,
-  provideData: DataUser,
-): { dataToWrite: Data; successRes: string } | { failRes: Response } => {
-  if (provideData && provideData.name && data) {
-    if (data.users.some((user) => user[provideData.name ?? ''])) {
-      const updatedUsers = data.users.filter(
-        (user) => !user[provideData.name ?? ''],
-      );
-      return {
-        successRes: `Deleted user ${provideData.name}`,
-        dataToWrite: { users: updatedUsers },
-      };
-    }
-    return {
-      failRes: new Response('User by provided username not found', {
-        status: 400,
-        headers,
-      }),
-    };
+const validatePostMethodByOperation = (providedData: Data, data: DataUser, method: "CREATE" | "UPDATE") => {
+  if (method === "CREATE") {
+    return providedData.users.some((user) => user[data.name as string])
   }
-  return {
-    failRes: new Response(err, {
-      status: 400,
-      headers,
-    }),
-  };
+
+  if (method === "UPDATE") {
+    const otherusers = providedData.users.filter((user) => !user[data.name as string])
+    return otherusers.some((user) => user[data.nameNew as string])
+  }
+}
+
+export const sendResponse = (res: NextApiResponse, code: number, result: any, responseType: 'ERROR' | 'SUCCESS') => {
+  const errormsg = { error: { code, result } }
+  const successmsg = { response: { code, result } }
+  responseType === 'ERROR' ? res.status(code).json(errormsg) : res.status(code).json(successmsg)
 };
 
-export const createMethod = (
-  data: Data | undefined,
-  provideData: DataUser,
-): { dataToWrite: Data; successRes: User } | { failRes: Response } => {
-  if (
-    provideData &&
-    provideData.name &&
-    provideData.likes &&
-    provideData.photos &&
-    provideData.subscribers &&
-    data
-  ) {
-    if (data.users.some((user) => user[provideData.name ?? ''])) {
-      return {
-        failRes: new Response('Bad request, username already in use', {
-          status: 400,
-          headers,
-        }),
-      };
-    }
 
-    const newUs = {
-      [provideData.name]: {
-        likes: provideData.likes,
-        photos: provideData.photos,
-        subscribers: provideData.subscribers,
-      },
-    };
-
-    data.users.push(newUs);
-
-    return { dataToWrite: data, successRes: newUs };
+export const createMethod = async (data: DataUser, provideData: Data, res: NextApiResponse): Promise<User | undefined> => {
+  if (data.likes === undefined || !data.name || data.subscribers === undefined || data.photos === undefined) {
+    sendResponse(res, 400, err, 'ERROR')
+    return
   }
-  return {
-    failRes: new Response(err, {
-      status: 400,
-      headers,
-    }),
-  };
+
+  if (validatePostMethodByOperation(provideData, data, "CREATE")) {
+    sendResponse(res, 400, "Bad input, user already exists", 'ERROR')
+    return
+  }
+
+  const user = {
+    [data.name as string]: {
+      photos: data.photos, likes: data.likes, subscribers: data.subscribers
+    }
+  }
+
+  const newData: { users: User[] } = { users: [] }
+  newData.users = [...provideData.users, user]
+  await writeJsonFile(newData)
+  return user
 };
 
-export const updateMethod = (
-  data: Data | undefined,
-  provideData: DataUser,
-): { dataToWrite: Data; successRes: User } | { failRes: Response } => {
-  if (
-    provideData &&
-    provideData.name &&
-    provideData.likes &&
-    provideData.photos &&
-    provideData.subscribers &&
-    data &&
-    provideData.name !== ''
-  ) {
-    if (data.users.some((user) => user[provideData.name as string])) {
-      const dataToWrite: { users: Array<User> } = { users: [] };
-      const name =
-        provideData.nameNew && provideData.name !== ''
-          ? provideData.nameNew
-          : provideData.name;
-
-      const updateUs = {
-        [name]: {
-          likes: provideData.likes,
-          photos: provideData.photos,
-          subscribers: provideData.subscribers,
-        },
-      };
-      const updated = data.users.filter(
-        (user) => !user[provideData.name as string],
-      );
-      updated.push(updateUs);
-      dataToWrite.users = updated;
-      return { dataToWrite, successRes: updateUs };
-    }
-
-    return {
-      failRes: new Response('Provided username does not exist', {
-        status: 400,
-        headers,
-      }),
-    };
+export const deleteMethod = async (data: DataUser, provideData: Data, res: NextApiResponse): Promise<string | undefined> => {
+  if (!data.name) {
+    sendResponse(res, 400, err, 'ERROR')
+    return
   }
-  return {
-    failRes: new Response(err, {
-      status: 400,
-      headers,
-    }),
-  };
+
+  if (provideData.users.some((user) => user[data.name as string])) {
+    const newData: { users: User[] } = { users: [] }
+    newData.users = provideData.users.filter((user) => !user[data.name as string])
+    await writeJsonFile(newData)
+    return data.name
+  } else {
+    sendResponse(res, 400, "User to delete not found", 'ERROR')
+  }
 };
+
+export const updateMethod = async (data: DataUser, provideData: Data, res: NextApiResponse): Promise<User | undefined> => {
+  if (data.likes === undefined || !data.name || data.subscribers === undefined || data.photos === undefined || !data.nameNew) {
+    sendResponse(res, 400, err, 'ERROR')
+    return
+  }
+
+  if (validatePostMethodByOperation(provideData, data, "UPDATE")) {
+    sendResponse(res, 400, "Bad input, user already exists", 'ERROR')
+    return
+  }
+
+  const newData: { users: User[] } = { users: [] }
+  const user = {
+    [data.nameNew as string]: {
+      photos: data.photos, likes: data.likes, subscribers: data.subscribers
+    }
+  }
+
+  if (provideData.users.some((user) => user[data.name as string])) {
+    newData.users = [...provideData.users.filter((user) => !user[data.name as string]), user]
+    await writeJsonFile(newData)
+    return user
+  } else {
+    sendResponse(res, 400, "User to update not found", 'ERROR')
+  }
+
+};
+

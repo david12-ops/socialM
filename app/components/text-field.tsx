@@ -27,19 +27,20 @@ export const MyCompTextField: React.FC<TextFieldProps> = ({
   labelComp,
   placeholderComp,
   funcComp,
-  errorComp,
+  error,
   valueComp,
   helpTexterComp,
   required,
 }) => {
-  return errorComp === '' ? (
+
+  return !error.get() ? (
     <TextField
       type={typeComp}
       label={labelComp.withoutErr}
       required={required}
       id={idComp}
       sx={{ m: 1, width: '25ch' }}
-      onChange={(e) => funcComp(e.target.value)}
+      onChange={(e) => { funcComp(e.target.value); error.set(undefined) }}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">{placeholderComp}</InputAdornment>
@@ -54,10 +55,10 @@ export const MyCompTextField: React.FC<TextFieldProps> = ({
       label={labelComp.err}
       required
       id={idComp}
-      helperText={errorComp}
+      helperText={error.get()}
       error
       sx={{ m: 1, width: '25ch' }}
-      onChange={(e) => funcComp(e.target.value)}
+      onChange={(e) => { funcComp(e.target.value); error.set(undefined) }}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">{placeholderComp}</InputAdornment>
