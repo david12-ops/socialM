@@ -115,7 +115,7 @@ export const Form: React.FC<Props> = ({
         />
       );
     },
-    [operation, stateErrs],
+    [operation],
   );
 
   return (

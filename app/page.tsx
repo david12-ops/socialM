@@ -12,8 +12,6 @@ import { fetchData } from './utility/http-utils';
 import { validationFormData } from './utility/validations-utils'
 import { ErrorTextFileds, FormDataSetter } from './types';
 
-//bug - pri chybe nektere textfield nedelaji onchange a nepusti me to na jinou operaci
-
 // eslint-disable-next-line import/no-default-export
 export default function Home() {
   const [data, setPopUpWindowData] = useState<JSX.Element>();
