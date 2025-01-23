@@ -14,7 +14,7 @@ import { IoMusicalNotesOutline } from "react-icons/io5";
 import styles from "../styles/component.module.css";
 import { usePathname } from "next/navigation";
 import { TbLogout2, TbLogin2 } from "react-icons/tb";
-import { authUtils } from "firebase/auth-utils";
+import { authUtils } from "../../firebase/auth-utils";
 import { FaExchangeAlt } from "react-icons/fa";
 
 export default function SideBarContent(params: { user: User | null | undefined }) {
