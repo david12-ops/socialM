@@ -65,12 +65,13 @@ const httpLink = (): HttpLink => {
 
 type ApolloClientProps =
   | {
-      forceNew?: false;
-      logout?: VoidFunction;
-    }
+    forceNew?: false;
+    logout: VoidFunction;
+  }
   | {
-      forceNew: true;
-    };
+    forceNew: true;
+    logout?: never;
+  };
 
 export function getApolloClient(parameters: ApolloClientProps) {
   // bude muset prebirat pro cache, pro kazdou stránku
