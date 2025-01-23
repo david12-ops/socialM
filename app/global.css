@@ -33,6 +33,7 @@
     --card-rgb: 180, 185, 188;
     --card-border-rgb: 131, 134, 135;
     --header-height: 0px;
+    --header-height-samllerscreen: 220px;
     --header-height-samllscreen: 190px;
     --header-height-largescreen: 65px;
 }
@@ -111,6 +112,21 @@ a {
 
     html {
         color-scheme: dark;
+    }
+}
+
+@media (min-width: 346px) {
+    :root {
+        --header-height: var(--header-height-samllerscreen);
+    }
+
+    header {
+        font-size: 10px;
+        padding: 0 8px;
+    }
+
+    main {
+        padding: 8px;
     }
 }
 

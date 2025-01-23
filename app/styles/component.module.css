@@ -191,33 +191,6 @@
     width: 300px
 }
 
-.videoHistoryCard {
-    display: flex;
-    flex-direction: row;
-    width: 400px;
-    height: 150px;
-    border: 2px solid transparent;
-    gap: 20px;
-}
-
-.videoHistoryDetail {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100px
-}
-
-.videoHistoryTitle {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100px
-}
-
 /* kategory bar */
 .sectionCategoryBar {
     display: flex;
@@ -247,12 +220,29 @@
     padding: 0;
 }
 
-/* media queries*/
-/* Small devices (phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
+@media only screen and (min-width: 346px) and (max-width: 575.98px) {
     .sectionCategoryBar {
         flex-direction: row;
         gap: 15px;
+    }
+
+    .videoCard {
+        width: 305px;
+        height: 305px;
+    }
+
+    .videoTitle {
+        font-size: 16px;
+        width: 200px
+    }
+
+    .videoDetail {
+        font-size: 10px;
+        width: 200px
+    }
+
+    .searchBar {
+        width: 70%;
     }
 
     .mainSection {
@@ -271,11 +261,29 @@
     }
 }
 
-/* Medium devices (tablets, 576px to 768px) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
     .mainSection {
         flex-direction: column;
         gap: 20px;
+    }
+
+    .videoCard {
+        width: 400px;
+        height: 300px;
+    }
+
+    .videoTitle {
+        font-size: 20px;
+        width: 300px
+    }
+
+    .videoDetail {
+        font-size: 14px;
+        width: 300px
+    }
+
+    .searchBar {
+        width: 500px;
     }
 
     .section {
@@ -289,11 +297,14 @@
     }
 }
 
-/* Large devices (desktops, 768px to 992px) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
     .mainSection {
         flex-direction: column;
         gap: 20px;
+    }
+
+    .searchBar {
+        width: 500px;
     }
 
     .searchBarSection {
@@ -301,7 +312,6 @@
     }
 }
 
-/* Extra large devices (1200px and above) */
 @media only screen and (min-width: 1200px) {
     .mainSection {
         justify-content: space-between;

@@ -1,13 +1,14 @@
 "use client"
 
-import { Button, styled } from "@mui/material";
-import { VideoHistory } from "../components/video";
+import { Avatar, Button, styled } from "@mui/material";
 import styles from "../styles/history.module.css"
 import stylesComp from "../styles/component.module.css"
 import { MdDelete } from "react-icons/md";
 import { IoStopCircleOutline } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
+import dynamic from "next/dynamic";
+import { useAuthContext } from "../components/auth-context-provider";
 
 
 const SearchBar = () => {
@@ -34,6 +35,10 @@ export default function HistoryPage() {
         }
     }));
 
+    const Video = dynamic(() => import('../components/video'), { ssr: false });
+    const { user } = useAuthContext()
+    const dempoAv = <Avatar alt={user?.email ? user.email : ""} src="">Dv</Avatar>
+
     return (
         <section>
             <h2 className={styles.title}>Historie sledování</h2>
@@ -45,18 +50,18 @@ export default function HistoryPage() {
                     <CostumeButton><div className={styles.Label}><IoSettingsOutline size={20} /> Spravovat celou historii</div></CostumeButton>
                 </section>
                 <section className={styles.section2}>
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
-                    {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
                 </section>
             </section>
         </section>
