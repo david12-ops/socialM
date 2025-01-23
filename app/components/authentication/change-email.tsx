@@ -14,7 +14,7 @@ import { FirebaseError } from 'firebase-admin';
 import router from 'next/router';
 import React, { useState } from 'react';
 
-import { authUtils } from 'firebase/auth-utils';
+import { authUtils } from '../../../firebase/auth-utils';
 
 import { useAuthContext } from '../auth-context-provider';
 
