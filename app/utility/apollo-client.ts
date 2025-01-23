@@ -66,11 +66,11 @@ const httpLink = (): HttpLink => {
 type ApolloClientProps =
   | {
     forceNew?: false;
-    logout: VoidFunction;
+    logout?: VoidFunction; // Made optional
   }
   | {
     forceNew: true;
-    logout?: never;
+    logout?: never; // Explicitly disallowed
   };
 
 export function getApolloClient(parameters: ApolloClientProps) {
