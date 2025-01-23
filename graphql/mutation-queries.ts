@@ -1,4 +1,4 @@
-import { firestore } from 'firebase/firebase-admin-config';
+import { firestore } from '../firebase/firebase-admin-config';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const db = firestore();
