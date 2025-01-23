@@ -97,6 +97,7 @@ const Submit = async (
 const MenuButton = styled(Button)({
   color: 'blue',
   backgroundColor: 'transparent',
+  fontFamily: 'Roboto, sans-serif',
   fontSize: '14px',
 });
 
@@ -159,11 +160,10 @@ export default function FormLogin() {
   const router = useRouter()
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="section" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -172,7 +172,7 @@ export default function FormLogin() {
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <CiLock />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ fontFamily: 'Segoe UI, sans-serif' }}>
           Přihlásit se
         </Typography>
         {myAlert}
@@ -192,6 +192,7 @@ export default function FormLogin() {
               autoComplete="email"
               autoFocus
               helperText="Zadejte svůj e-mail"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           ) : (
             <TextField
@@ -204,6 +205,7 @@ export default function FormLogin() {
               autoComplete="email"
               autoFocus
               helperText={errCredentials.errEmail.get()}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           )}
           {errCredentials.errPassword.get() === '' ? (
@@ -216,6 +218,8 @@ export default function FormLogin() {
               type="password"
               autoComplete="current-password"
               helperText="Zadejte své heslo"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
+
             />
           ) : (
             <TextField
@@ -228,6 +232,8 @@ export default function FormLogin() {
               type="password"
               autoComplete="current-password"
               helperText={errCredentials.errPassword.get()}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
+
             />
           )}
 
@@ -266,7 +272,7 @@ export default function FormLogin() {
             }
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, fontFamily: 'Roboto, sans-serif', fontSize: '14px', }}
           >
             Přihlásit
           </Button>

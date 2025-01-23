@@ -154,17 +154,16 @@ export default function FormChangePass() {
   );
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="section" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ fontFamily: 'Segoe UI, sans-serif' }}>
           Změna hesla
         </Typography>
         {myAlert}
@@ -185,6 +184,7 @@ export default function FormChangePass() {
               type="password"
               autoComplete="current-password"
               helperText="Zadejte nové heslo"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           ) : (
             <TextField
@@ -198,6 +198,7 @@ export default function FormChangePass() {
               type="password"
               autoComplete="current-password"
               helperText={setterErrPassword.errNewPassword.get()}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           )}
 
@@ -214,6 +215,7 @@ export default function FormChangePass() {
               type="password"
               autoComplete="current-password"
               helperText="Potvrďte nové heslo"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           ) : (
             <TextField
@@ -229,6 +231,7 @@ export default function FormChangePass() {
               type="password"
               autoComplete="current-password"
               helperText={setterErrPassword.errConfirmPassword.get()}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           )}
 
@@ -246,7 +249,7 @@ export default function FormChangePass() {
             }
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, fontFamily: 'Roboto, sans-serif', fontSize: '14px', }}
           >
             Odeslat
           </Button>

@@ -18,6 +18,8 @@ import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import darkThemeOptions from './styles/theme/darkThemeOptions';
 
+//udelat responzivitu jen - tabulka bude orisek
+
 interface MyAppProps {
   emotionCache: EmotionCache;
   themes: { lightTheme: Theme, darkTheme: Theme }
@@ -64,6 +66,6 @@ export default function RootLayout({
           </ApolloProvider>
         </AuthContextProvider>
       </body>
-    </html>
+    </html >
   );
 }

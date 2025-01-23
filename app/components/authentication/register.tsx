@@ -94,9 +94,9 @@ const RequirementsPass = () => {
         padding: '10px',
       }}
     >
-      <p style={{ margin: '6px', color: "black" }}>Délka větší nebo rovna 8</p>
-      <p style={{ margin: '6px', color: "black" }}>Kombinace symbolu, čísla, znaku</p>
-      <p style={{ margin: '6px', color: "black" }}>Část e-mailu není součástí hesla</p>
+      <p style={{ margin: '6px', color: "black", fontFamily: 'Inter, sans-serif', fontSize: '12px' }}>Délka větší nebo rovna 8</p>
+      <p style={{ margin: '6px', color: "black", fontFamily: 'Inter, sans-serif', fontSize: '12px' }}>Kombinace symbolu, čísla, znaku</p>
+      <p style={{ margin: '6px', color: "black", fontFamily: 'Inter, sans-serif', fontSize: '12px' }}>Část e-mailu není součástí hesla</p>
     </section>
   );
 };
@@ -192,18 +192,21 @@ export default function RegisterForm() {
   });
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="section"
+      maxWidth="xs"
+    >
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Avatar src="/broken-image.jpg" />
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ fontFamily: 'Segoe UI, sans-serif' }} >
           Registrace
         </Typography>
         {myAlert}
@@ -222,6 +225,7 @@ export default function RegisterForm() {
               autoComplete="email"
               autoFocus
               helperText="Zadejte nový e-mail"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           ) : (
             <TextField
@@ -234,6 +238,7 @@ export default function RegisterForm() {
               autoComplete="email"
               autoFocus
               helperText={errCredentials.errEmail.get()}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           )}
 
@@ -241,7 +246,14 @@ export default function RegisterForm() {
             <Button onClick={() => SetClose((prev) => !prev)}>
               <AiOutlineInfoCircle />
             </Button>
-            <p style={{ textAlign: 'center', margin: '10px' }}>
+            <p
+              style={{
+                textAlign: 'center',
+                margin: '10px',
+                fontFamily: 'Roboto, sans-serif',
+                fontSize: '14px',
+              }}
+            >
               Požadavky na heslo
             </p>
           </div>
@@ -258,6 +270,7 @@ export default function RegisterForm() {
               type="password"
               autoComplete="current-password"
               helperText="Zadejte nové heslo"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           ) : (
             <TextField
@@ -270,6 +283,7 @@ export default function RegisterForm() {
               type="password"
               autoComplete="current-password"
               helperText={errCredentials.errPassword.get()}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           )}
 
@@ -286,12 +300,18 @@ export default function RegisterForm() {
             }
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{
+              mt: 3,
+              mb: 2,
+              fontFamily: 'Roboto, sans-serif',
+              fontSize: '14px',
+            }}
           >
             Zaregistrovat se
           </Button>
         </Box>
       </Box>
     </Container>
+
   );
 };

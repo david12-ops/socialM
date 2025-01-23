@@ -29,8 +29,6 @@ export default function HistoryPage() {
         color: "black",
         backgroundColor: "rgba(128, 128, 128, 0.3)",
         borderRadius: "20px",
-        fontSize: "12px",
-        padding: "10px",
         ":hover": {
             backgroundColor: "rgba(128, 128, 128, 0.1)",
         }
@@ -42,9 +40,9 @@ export default function HistoryPage() {
             <section className={styles.mainSection}>
                 <section className={styles.section1}>
                     <SearchBar />
-                    <CostumeButton><MdDelete size={20} /> Vymazat celou historii vyhledávání</CostumeButton>
-                    <CostumeButton><IoStopCircleOutline size={20} /> Pozastavit historii sledování</CostumeButton>
-                    <CostumeButton><IoSettingsOutline size={20} /> Spravovat celou historii</CostumeButton>
+                    <CostumeButton><div className={styles.Label}><MdDelete size={20} />Vymazat celou historii vyhledávání</div></CostumeButton>
+                    <CostumeButton><div className={styles.Label}><IoStopCircleOutline size={20} /> Pozastavit historii sledování</div></CostumeButton>
+                    <CostumeButton><div className={styles.Label}><IoSettingsOutline size={20} /> Spravovat celou historii</div></CostumeButton>
                 </section>
                 <section className={styles.section2}>
                     {<VideoHistory title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} />}

@@ -5,14 +5,28 @@ export default function Video(params: { avatar: JSX.Element, title: string, chan
 
     return (
         <section className={styles.videoCard}>
-            <div className={styles.videoPartCard}>Vítej</div>
-            {/* {image ? <div><img src={image} alt={"demo"} /> </div> : <div>Zk</div>} */}
-            <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: "30px" }}>
+            <div className={styles.videoPartCard}>
+                {image ? <div><img className={styles.preview} src={image} alt={"demo"} /> </div> : <div>Zk</div>}
+            </div>
+            <div className={styles.videoDesPart}>
                 {avatar}
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <p>{title}</p>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <p>{channelName}</p> <p>{viewsCount} zhlednutí - před {timeFromUpload}</p>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                }}>
+                    <p className={styles.videoTitle}>
+                        {title}
+                    </p>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                    }}>
+                        <p className={styles.videoDetail}>
+                            {channelName}
+                        </p>
+                        <p className={styles.videoDetail}>
+                            {viewsCount} zhlednutí - před {timeFromUpload}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -25,12 +39,15 @@ export function VideoHistory(params: { title: string, channelName: string, views
 
     return (
         <section className={styles.videoHistoryCard}>
-            <div className={styles.videoPartCard}>Vítej</div>
-            {/* {image ? <div><img src={image} alt={"demo"} /> </div> : <div>Zk</div>} */}
+            <div className={styles.videoPartCard}>
+                <div className={styles.videoPartCard}>
+                    {image ? <div><img className={styles.preview} src={image} alt={"demo"} /> </div> : <div>Zk</div>}
+                </div>
+            </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-                <p>{title}</p>
+                <p className={styles.videoHistoryTitle}>{title}</p>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <p>{channelName}</p> <p>{viewsCount} zhlednutí</p>
+                    <p className={styles.videoHistoryDetail}>{channelName}</p> <p className={styles.videoHistoryDetail}>{viewsCount} zhlednutí</p>
                 </div>
             </div>
         </section>

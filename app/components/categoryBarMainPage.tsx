@@ -13,7 +13,8 @@ export default function CategoryBar() {
         color: "black",
         backgroundColor: "rgba(128, 128, 128, 0.3)",
         borderRadius: "20px",
-        fontSize: "12px",
+        fontFamily: 'Roboto, sans-serif',
+        fontSize: '14px',
         padding: "10px",
         ":hover": {
             backgroundColor: "rgba(128, 128, 128, 0.1)",

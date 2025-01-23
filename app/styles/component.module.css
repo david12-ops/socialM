@@ -63,20 +63,32 @@
 .mainSection {
     width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
 }
 
-.section {
+.startSection {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    align-items: center;
+    gap: 10px;
+    min-width: 120px;
 }
 
-.searchBarSection {
-    flex: 1
+.middleSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+}
+
+.endSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    min-width: 150px;
 }
 
 /* content side bar */
@@ -106,6 +118,8 @@
     gap: 10px;
     padding: 10px;
     border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
     transition: background-color 0.2s ease;
 }
 
@@ -133,15 +147,6 @@
     border: 2px solid transparent;
 }
 
-.videoHistoryCard {
-    display: flex;
-    flex-direction: row;
-    width: 400px;
-    height: 150px;
-    border: 2px solid transparent;
-    gap: 20px;
-}
-
 .videoPartCard {
     width: 100%;
     height: 100%;
@@ -152,6 +157,65 @@
 
 .videoCard:hover {
     border-radius: 0px
+}
+
+.preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.videoDesPart {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px
+}
+
+.videoTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 300px
+}
+
+.videoDetail {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 300px
+}
+
+.videoHistoryCard {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 150px;
+    border: 2px solid transparent;
+    gap: 20px;
+}
+
+.videoHistoryDetail {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100px
+}
+
+.videoHistoryTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100px
 }
 
 /* kategory bar */
@@ -181,4 +245,73 @@
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+/* media queries*/
+/* Small devices (phones, less than 576px) */
+@media only screen and (max-width: 575.98px) {
+    .sectionCategoryBar {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .mainSection {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .section {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searchBarSection {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets, 576px to 768px) */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+    .mainSection {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .section {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searchBarSection {
+        flex: 0.8;
+    }
+}
+
+/* Large devices (desktops, 768px to 992px) */
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    .mainSection {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .searchBarSection {
+        flex: 0.8;
+    }
+}
+
+/* Extra large devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+    .mainSection {
+        justify-content: space-between;
+    }
+
+    .section {
+        gap: 20px;
+    }
+
+    .searchBarSection {
+        flex: 1;
+    }
 }

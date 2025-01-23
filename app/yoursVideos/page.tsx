@@ -1,7 +1,6 @@
 "use client"
 import styles from "../styles/yourVideos.module.css"
 
-
 const Table = () => {
     return (
         <section>
@@ -23,7 +22,6 @@ const Table = () => {
                         <td><input type="checkbox" /></td>
                         <td>
                             <div className={styles.videoInfo}>
-                                <img src="fifa22-thumbnail.jpg" alt="Video Thumbnail" />
                                 <div>
                                     <p>Cvičení - klíčové snímky v obraze a zvuku</p>
                                     <span>Přidat popis</span>
@@ -41,7 +39,6 @@ const Table = () => {
                         <td><input type="checkbox" /></td>
                         <td>
                             <div className={styles.videoInfo}>
-                                <img src="green-screen-thumbnail.jpg" alt="Video Thumbnail" />
                                 <div>
                                     <p>PF Cvičení Chroma key green</p>
                                     <span>Přidat popis</span>
@@ -63,8 +60,8 @@ const Table = () => {
 
 export default function VideosPage() {
     return (
-        <section style={{ margin: "20px" }}>
-            <h2>Obsah kanálu</h2>
+        <section>
+            <h2 className={styles.title}>Obsah kanálu</h2>
             <Table />
         </section>
     )

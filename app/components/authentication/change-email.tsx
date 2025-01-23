@@ -13,9 +13,7 @@ import { User } from 'firebase/auth';
 import { FirebaseError } from 'firebase-admin';
 import router from 'next/router';
 import React, { useState } from 'react';
-
 import { authUtils } from '../../../firebase/auth-utils';
-
 import { useAuthContext } from '../auth-context-provider';
 
 const MyAlert = (message: string, type: string) => {
@@ -75,17 +73,16 @@ export default function FormChangeEm() {
   const { user } = useAuthContext();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="section" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ fontFamily: 'Segoe UI, sans-serif' }}>
           Změna emailu
         </Typography>
         {myAlert}
@@ -105,6 +102,7 @@ export default function FormChangeEm() {
               autoComplete="email"
               autoFocus
               helperText="Zadejte nový e-mail"
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           ) : (
             <TextField
@@ -117,6 +115,7 @@ export default function FormChangeEm() {
               autoComplete="email"
               autoFocus
               helperText={erroEmail}
+              sx={{ fontFamily: 'Inter, sans-serif', fontSize: '12px' }}
             />
           )}
 
@@ -124,7 +123,7 @@ export default function FormChangeEm() {
             onClick={() => Submit(newEm, SetmyAlert, user)}
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, fontFamily: 'Roboto, sans-serif', fontSize: '14px', }}
           >
             Odeslat
           </Button>

@@ -60,7 +60,8 @@ const CostumeCreateButton = styled(Button, {
     color: "black",
     backgroundColor: "rgba(128, 128, 128, 0.3)",
     borderRadius: "20px",
-    fontSize: "12px",
+    fontFamily: 'Roboto, sans-serif',
+    fontSize: '14px',
     padding: "10px",
     ":hover": {
         backgroundColor: "rgba(128, 128, 128, 0.1)",
@@ -128,7 +129,9 @@ export default function Navbar(params: { user: User | null | undefined }) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} >
-            <Typography variant="h6" sx={{ textAlign: "center", mx: 2, my: 2, color: '#167EF5' }}>
+            <Typography variant="h6" sx={{
+                textAlign: "center", mx: 2, my: 2, color: '#167EF5', fontFamily: 'Segoe UI, sans-serif'
+            }}>
                 Menu
             </Typography>
             <Divider />
@@ -137,12 +140,12 @@ export default function Navbar(params: { user: User | null | undefined }) {
     );
 
     return (
-        <Box sx={{ display: "flex", paddingBottom: '100px' }}>
+        <Box>
             <CssBaseline />
             <CustomAppBar>
                 <Toolbar className="nav">
                     <section className={styles.mainSection}>
-                        <section className={styles.section}>
+                        <section className={styles.startSection}>
                             <IconButton
                                 color="info"
                                 aria-label="open drawer"
@@ -152,21 +155,22 @@ export default function Navbar(params: { user: User | null | undefined }) {
                             >
                                 <RxHamburgerMenu />
                             </IconButton>
-
                             <Typography
                                 variant="h6"
                                 component="div"
                                 color="black"
+                                fontFamily='Segoe UI, sans-serif'
                             >
                                 socialM
                             </Typography>
-
                         </section>
-                        <section className={styles.searchBarSection}>
+
+                        <section className={styles.middleSection}>
                             {<SearchBar />}
                         </section>
-                        <section>
-                            <Box sx={{ display: 'block' }}>{navItm}</Box>
+
+                        <section className={styles.endSection}>
+                            <Box className={styles.section}>{navItm}</Box>
                         </section>
                     </section>
                 </Toolbar>
