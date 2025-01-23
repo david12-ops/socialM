@@ -1,6 +1,6 @@
 import { DecodedIdToken } from 'firebase-admin/auth';
 
-import { firestore } from '@/firebase/firebase-admin-config';
+import { firestore } from 'firebase/firebase-admin-config';
 
 type MyContext = { user?: DecodedIdToken };
 const db = firestore();

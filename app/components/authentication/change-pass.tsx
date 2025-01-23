@@ -14,7 +14,7 @@ import { User } from 'firebase/auth';
 import { FirebaseError } from 'firebase-admin';
 import React from 'react';
 
-import { authUtils } from '@/firebase/auth-utils';
+import { authUtils } from 'firebase/auth-utils';
 
 import { useAuthContext } from '../auth-context-provider';
 

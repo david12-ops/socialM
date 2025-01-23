@@ -12,7 +12,7 @@ import { FirebaseError } from 'firebase-admin';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
-import { authUtils } from '@/firebase/auth-utils';
+import { authUtils } from 'firebase/auth-utils';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 
 const MyAlert = (message: string, type: string) => {

@@ -12,7 +12,7 @@ import { FirebaseError } from 'firebase-admin';
 import router from 'next/router';
 import * as React from 'react';
 
-import { authUtils } from '@/firebase/auth-utils';
+import { authUtils } from 'firebase/auth-utils';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const MyAlert = (message: string, type: string) => {
