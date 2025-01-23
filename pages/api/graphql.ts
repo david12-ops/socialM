@@ -6,8 +6,8 @@ import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { NextRequest } from 'next/server';
 
-import { resolvers } from '../../graphql/resolvers';
-import { typeDefs } from '../../graphql/schema';
+import { resolvers } from '@/graphql/resolvers';
+import { typeDefs } from '@/graphql/schema';
 
 import { verifyToken } from './verify-token';
 
