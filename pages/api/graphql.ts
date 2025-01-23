@@ -16,11 +16,18 @@ const apolloserver = new ApolloServer<Context>({
   typeDefs,
 });
 
+function getAuthorizationHeader(headers: Headers | Record<string, string>): string | null {
+  if (typeof headers.get === 'function') {
+    return headers.get('authorization');
+  } else {
+    return (headers as Record<string, string>)['authorization'] || null;
+  }
+}
+
 const handler = startServerAndCreateNextHandler<NextRequest>(apolloserver, {
   context: async (req) => {
-    const auth =
-      // eslint-disable-next-line @typescript-eslint/dot-notation
-      req.headers.get?.('authorization') || req.headers['authorization'];
+    const auth = getAuthorizationHeader(req.headers)
+
     return {
       user: auth ? await verifyToken(auth as string) : undefined,
     } as Context;

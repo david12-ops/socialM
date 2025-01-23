@@ -1,0 +1,56 @@
+.videoTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.videoTable thead {
+    background-color: #f1f1f1;
+}
+
+.videoTable th,
+.videoTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.videoTable th {
+    font-weight: bold;
+}
+
+.videoTable td input[type="checkbox"] {
+    margin: 0;
+}
+
+.videoInfo {
+    display: flex;
+    align-items: center;
+}
+
+.videoInfo img {
+    width: 80px;
+    height: 45px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.videoInfo p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.videoInfo span {
+    font-size: 0.9em;
+    color: gray;
+}
+
+.videoTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.videoTable tbody tr:hover {
+    background-color: #f1f1f1;
+}

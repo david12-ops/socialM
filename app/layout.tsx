@@ -4,27 +4,33 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import './globals.css';
+import './global.css';
 
 import { ApolloProvider } from '@apollo/client';
-// import { CacheProvider, EmotionCache } from '@emotion/react';
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-// import type { AppProps } from 'next/app';
+import { createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import * as React from 'react';
 
-import { AuthContextProvider } from './components/auth-context-provider';
+import { AuthContextProvider, useAuthContext } from './components/auth-context-provider';
 import lightThemeOptions from './styles/theme/lightThemeOptions';
 import { getApolloClient } from './utility/apollo-client';
 import createEmotionCache from './utility/create-emotion-cache';
+import { EmotionCache } from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import darkThemeOptions from './styles/theme/darkThemeOptions';
 
-// interface MyAppProps extends AppProps {
-//   emotionCache?: EmotionCache;
-// }
-// props: MyAppProps
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const clientSideEmotionCache = createEmotionCache();
+interface MyAppProps {
+  emotionCache: EmotionCache;
+  themes: { lightTheme: Theme, darkTheme: Theme }
+}
 
-const lightTheme = createTheme(lightThemeOptions);
+const props: MyAppProps = {
+  emotionCache: createEmotionCache(),
+  themes: { lightTheme: createTheme(lightThemeOptions), darkTheme: createTheme(darkThemeOptions) },
+}
+
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import('./components/navBar'), { ssr: false });
 
 // eslint-disable-next-line import/no-default-export
 export default function RootLayout({
@@ -32,20 +38,29 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const { emotionCache = clientSideEmotionCache } = props;
+
+  const { emotionCache, themes } = props;
+  const { user } = useAuthContext()
   const apolloClient = getApolloClient({ forceNew: false });
   return (
     <html lang="en">
       <head />
       <body>
+        <header>
+          <nav>
+            <Navbar user={user} />
+          </nav>
+        </header>
         <AuthContextProvider>
           <ApolloProvider client={apolloClient}>
-            {/* <CacheProvider value={emotionCache}> */}
-            <ThemeProvider theme={lightTheme}>
-              <CssBaseline />
-              {children}
-            </ThemeProvider>
-            {/* </CacheProvider> */}
+            <CacheProvider value={emotionCache}>
+              <ThemeProvider theme={themes.lightTheme}>
+                <CssBaseline />
+                <main>
+                  {children}
+                </main>
+              </ThemeProvider>
+            </CacheProvider>
           </ApolloProvider>
         </AuthContextProvider>
       </body>

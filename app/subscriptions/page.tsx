@@ -1,21 +1,21 @@
-'use client';
+"use client"
 
-import { useAuthContext } from './components/auth-context-provider';
-import { Avatar } from '@mui/material';
+import { Avatar } from "@mui/material";
+import { useAuthContext } from "../components/auth-context-provider";
+import styles from "../styles/subscription.module.css"
 import dynamic from "next/dynamic";
 
-const CategoryBar = dynamic(() => import('./components/categoryBarMainPage'), { ssr: false })
-const Video = dynamic(() => import('./components/video'), { ssr: false });
+const Video = dynamic(() => import('../components/video'), { ssr: false });
 
-// eslint-disable-next-line import/no-default-export
-export default function Home() {
+export default function SubscriptionsPage() {
+
     const { user } = useAuthContext()
     const dempoAv = <Avatar alt={user?.email ? user.email : ""} src="">Dv</Avatar>
 
     return (
         <section>
-            {<CategoryBar />}
-            <section style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around", gap: "40px" }}>
+            <h2 className={styles.title}>Nejnovější</h2>
+            <section className={styles.section}>
                 {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
                 {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
                 {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}

@@ -1,0 +1,184 @@
+/* search bar */
+.searchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 5px 10px;
+    width: 400px;
+    background-color: #fff;
+}
+
+.searchBar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 50px;
+}
+
+.searchBar input::placeholder {
+    color: #888;
+}
+
+.searchBar .icon {
+    margin: 0 8px;
+    color: #888;
+    cursor: pointer;
+}
+
+.searchBar .icon:hover {
+    color: #000;
+}
+
+.micContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.micContainer:hover {
+    background-color: #e0e0e0;
+}
+
+.micContainer .icon {
+    color: #000;
+}
+
+
+/* nav bar */
+.mainSection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.section {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.searchBarSection {
+    flex: 1
+}
+
+/* content side bar */
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sideBarItem {
+    width: 100%;
+    margin: 20px;
+}
+
+.sideBarItem ul li {
+    list-style: none;
+    width: 85%;
+}
+
+.sideBarItem h4 {
+    padding-bottom: 10px;
+}
+
+.linkLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.linkLabel:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.linkLabel:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.active {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+/* video component */
+.videoCard {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 300px;
+    border: 2px solid transparent;
+}
+
+.videoHistoryCard {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 150px;
+    border: 2px solid transparent;
+    gap: 20px;
+}
+
+.videoPartCard {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 8px;
+    margin-bottom: 15px
+}
+
+.videoCard:hover {
+    border-radius: 0px
+}
+
+/* kategory bar */
+.sectionCategoryBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 30px;
+}
+
+.sectionCategoryBar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sectionCategoryBar ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
