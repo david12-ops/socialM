@@ -59,11 +59,12 @@ export default function RootLayout({
   const { user } = useAuthContext()
   const apolloClient = getApolloClient({ forceNew: false });
   const pathName = usePathname()
+  const title = getTitleFromPath(pathName) || 'socialM'
 
   return (
     <html lang="cs">
       <Head>
-        <title>{getTitleFromPath(pathName) || 'Default Page Title'}</title>
+        <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
