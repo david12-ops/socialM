@@ -45,7 +45,7 @@ export default function RootLayout({
   const { user } = useAuthContext()
   const apolloClient = getApolloClient({ forceNew: false });
   return (
-    <html lang="en">
+    <html lang="cs">
       <head />
       <body>
         <header>

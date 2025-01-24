@@ -1,12 +1,8 @@
 import { Button, styled } from "@mui/material";
-import { usePathname } from "next/navigation";
 import styles from "../styles/component.module.css";
 
 
 export default function CategoryBar() {
-    const pathName = usePathname();
-    const isActive = (path: string) => pathName === path;
-
     const CostumeCreateButton = styled(Button, {
         shouldForwardProp: (prop) => prop !== 'customProp',
     })(({ theme }) => ({

@@ -42,7 +42,7 @@
     transition: background-color 0.2s ease;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: '14px',
+    font-size: 14px;
 }
 
 @media only screen and (max-width: 950px) {

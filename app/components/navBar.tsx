@@ -145,7 +145,7 @@ export default function Navbar(params: { user: User | null | undefined }) {
             <CustomAppBar>
                 <Toolbar className="nav">
                     <section className={styles.mainSection}>
-                        <section className={styles.startSection}>
+                        <div className={styles.startSection}>
                             <IconButton
                                 color="info"
                                 aria-label="open drawer"
@@ -163,15 +163,15 @@ export default function Navbar(params: { user: User | null | undefined }) {
                             >
                                 socialM
                             </Typography>
-                        </section>
+                        </div>
 
-                        <section className={styles.middleSection}>
+                        <div className={styles.middleSection}>
                             {<SearchBar />}
-                        </section>
+                        </div>
 
-                        <section className={styles.endSection}>
+                        <div className={styles.endSection}>
                             <Box className={styles.section}>{navItm}</Box>
-                        </section>
+                        </div>
                     </section>
                 </Toolbar>
             </CustomAppBar>

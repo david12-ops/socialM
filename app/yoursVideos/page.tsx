@@ -3,7 +3,7 @@ import styles from "../styles/yourVideos.module.css"
 
 const Table = () => {
     return (
-        <section>
+        <div>
             <table className={styles.videoTable}>
                 <thead>
                     <tr>
@@ -56,7 +56,7 @@ const Table = () => {
                     </tr>
                 </tbody>
             </table>
-        </section>
+        </div>
     )
 }
 

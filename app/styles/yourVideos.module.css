@@ -61,7 +61,7 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     .videoTable thead {
         display: none;
     }

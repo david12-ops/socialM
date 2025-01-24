@@ -41,16 +41,16 @@ export default function HistoryPage() {
 
     return (
         <section>
-            <section className={styles.mainSection}>
+            <div className={styles.mainSection}>
                 <div className={styles.section1}>
-                    <section className={styles.menu}>
+                    <div className={styles.menu}>
                         <SearchBar />
                         <CostumeButton><div className={styles.Label}><MdDelete size={20} />Vymazat celou historii vyhledávání</div></CostumeButton>
                         <CostumeButton><div className={styles.Label}><IoStopCircleOutline size={20} /> Pozastavit historii sledování</div></CostumeButton>
                         <CostumeButton><div className={styles.Label}><IoSettingsOutline size={20} /> Spravovat celou historii</div></CostumeButton>
-                    </section>
+                    </div>
                 </div>
-                <section className={styles.section2}>
+                <div className={styles.section2}>
                     <h2 className={styles.title}>Historie sledování</h2>
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
@@ -64,8 +64,8 @@ export default function HistoryPage() {
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
-                </section>
-            </section>
+                </div>
+            </div>
         </section>
     );
 }
