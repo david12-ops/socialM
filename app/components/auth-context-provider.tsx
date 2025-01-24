@@ -40,6 +40,9 @@ export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
             left: '50%',
             msTransform: 'translate(-50%, -50%)',
             transform: 'translate(-50%, -50%)',
+            fontFamily: 'Roboto, sans-serif',
+            fontWeight: "500",
+            fontSize: "20px"
           }}
         >
           <div>Loading...</div>

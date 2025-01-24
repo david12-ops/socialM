@@ -41,15 +41,17 @@ export default function HistoryPage() {
 
     return (
         <section>
-            <h2 className={styles.title}>Historie sledování</h2>
             <section className={styles.mainSection}>
-                <section className={styles.section1}>
-                    <SearchBar />
-                    <CostumeButton><div className={styles.Label}><MdDelete size={20} />Vymazat celou historii vyhledávání</div></CostumeButton>
-                    <CostumeButton><div className={styles.Label}><IoStopCircleOutline size={20} /> Pozastavit historii sledování</div></CostumeButton>
-                    <CostumeButton><div className={styles.Label}><IoSettingsOutline size={20} /> Spravovat celou historii</div></CostumeButton>
-                </section>
+                <div className={styles.section1}>
+                    <section className={styles.menu}>
+                        <SearchBar />
+                        <CostumeButton><div className={styles.Label}><MdDelete size={20} />Vymazat celou historii vyhledávání</div></CostumeButton>
+                        <CostumeButton><div className={styles.Label}><IoStopCircleOutline size={20} /> Pozastavit historii sledování</div></CostumeButton>
+                        <CostumeButton><div className={styles.Label}><IoSettingsOutline size={20} /> Spravovat celou historii</div></CostumeButton>
+                    </section>
+                </div>
                 <section className={styles.section2}>
+                    <h2 className={styles.title}>Historie sledování</h2>
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}

@@ -226,7 +226,7 @@
     padding: 0;
 }
 
-@media only screen and (min-width: 346px) and (max-width: 575.98px) {
+@media only screen and (min-width: 305px) and (max-width: 575.98px) {
     .sectionCategoryBar {
         flex-direction: row;
         gap: 15px;

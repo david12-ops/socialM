@@ -1,5 +1,4 @@
 .title {
-    padding-bottom: 20px;
     text-align: center;
     font-family: 'Segoe UI', sans-serif;
 }
@@ -7,15 +6,22 @@
 .mainSection {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 40px;
+    justify-content: flex-start;
 }
 
 .section1 {
     display: flex;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
     flex-direction: column;
-    gap: 40px
+    gap: 20px;
+    position: fixed;
+    width: 300px;
 }
 
 .section2 {
@@ -23,7 +29,9 @@
     flex-direction: column;
     gap: 40px;
     box-sizing: border-box;
+    margin-left: 360px;
 }
+
 
 .Label {
     display: flex;
@@ -35,4 +43,37 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: '14px',
+}
+
+@media only screen and (max-width: 950px) {
+    .mainSection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section1 {
+        height: 300px;
+        margin: 10px;
+    }
+
+    .menu {
+        width: 100%;
+        position: static;
+        gap: 20px;
+    }
+
+    .section2 {
+        width: 100%;
+        margin-left: 0;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+@media only screen and (min-width: 951px) and (max-width: 1100px) {
+
+    .section2 {
+        margin-left: 250px;
+        margin-right: -180px;
+    }
 }
