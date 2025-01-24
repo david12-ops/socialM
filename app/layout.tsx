@@ -9,7 +9,7 @@ import './global.css';
 import { ApolloProvider } from '@apollo/client';
 import { createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import * as React from 'react';
-
+import dynamic from "next/dynamic";
 import { AuthContextProvider, useAuthContext } from './components/auth-context-provider';
 import lightThemeOptions from './styles/theme/lightThemeOptions';
 import { getApolloClient } from './utility/apollo-client';
@@ -17,8 +17,9 @@ import createEmotionCache from './utility/create-emotion-cache';
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import darkThemeOptions from './styles/theme/darkThemeOptions';
+import { usePathname } from 'next/navigation';
+import Head from 'next/head';
 
-//udelat responzivitu jen - tabulka bude orisek
 
 interface MyAppProps {
   emotionCache: EmotionCache;
@@ -30,7 +31,20 @@ const props: MyAppProps = {
   themes: { lightTheme: createTheme(lightThemeOptions), darkTheme: createTheme(darkThemeOptions) },
 }
 
-import dynamic from "next/dynamic";
+const getTitleFromPath = (pathName: string | null) => {
+  const pathTitles: { [key: string]: string } = {
+    "/": "Domů",
+    "/subscriptions": "Odběry",
+    "/history": "Historie",
+    "/yoursVideos": "Vaše videa",
+    "/favoritesVideos": "Oblíbená videa",
+    "/changePassword": "Změna hesla",
+    "/changeEmail": "Změna emailu",
+    "/login": "Přihlásit se",
+  };
+
+  return pathTitles[pathName as string] || "socialM";
+};
 
 const Navbar = dynamic(() => import('./components/navBar'), { ssr: false });
 
@@ -44,9 +58,15 @@ export default function RootLayout({
   const { emotionCache, themes } = props;
   const { user } = useAuthContext()
   const apolloClient = getApolloClient({ forceNew: false });
+  const pathName = usePathname()
+
   return (
     <html lang="cs">
-      <head />
+      <Head>
+        <title>{getTitleFromPath(pathName) || 'Default Page Title'}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body>
         <header>
           <nav>
@@ -66,6 +86,6 @@ export default function RootLayout({
           </ApolloProvider>
         </AuthContextProvider>
       </body>
-    </html >
+    </html>
   );
 }
