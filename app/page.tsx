@@ -13,7 +13,7 @@ export default function Home() {
     const dempoAv = <Avatar alt={user?.email ? user.email : ""} src="">Dv</Avatar>
 
     return (
-        <section>
+        <div>
             {<CategoryBar />}
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around", gap: "40px" }}>
                 {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
@@ -29,6 +29,6 @@ export default function Home() {
                 {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                 {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
             </div>
-        </section>
+        </div>
     );
 }

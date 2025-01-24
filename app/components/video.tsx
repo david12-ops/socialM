@@ -4,7 +4,7 @@ export default function Video(params: { avatar: JSX.Element, title: string, chan
     const { avatar, channelName, viewsCount, title, timeFromUpload, image } = params
 
     return (
-        <section className={styles.videoCard}>
+        <div className={styles.videoCard}>
             <div className={styles.videoPartCard}>
                 <img className={styles.preview} src={image} alt="preview" />
             </div>
@@ -30,6 +30,6 @@ export default function Video(params: { avatar: JSX.Element, title: string, chan
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }

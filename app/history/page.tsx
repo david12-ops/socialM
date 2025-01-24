@@ -40,7 +40,7 @@ export default function HistoryPage() {
     const dempoAv = <Avatar alt={user?.email ? user.email : ""} src="">Dv</Avatar>
 
     return (
-        <section>
+        <div>
             <div className={styles.mainSection}>
                 <div className={styles.section1}>
                     <div className={styles.menu}>
@@ -50,7 +50,7 @@ export default function HistoryPage() {
                         <CostumeButton><div className={styles.Label}><IoSettingsOutline size={20} /> Spravovat celou historii</div></CostumeButton>
                     </div>
                 </div>
-                <div className={styles.section2}>
+                <section className={styles.section2}>
                     <h2 className={styles.title}>Historie sledování</h2>
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
@@ -64,8 +64,8 @@ export default function HistoryPage() {
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                     {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
     );
 }

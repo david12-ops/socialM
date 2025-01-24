@@ -24,7 +24,7 @@ export default function SideBarContent(params: { user: User | null | undefined }
     const isActive = (path: string) => pathName === path;
 
     return (
-        <section className={styles.sideBar}>
+        <div className={styles.sideBar}>
             <div className={styles.sideBarItem}>
                 <ul>
                     <li>{<Link href={"/"}><div className={`${styles.linkLabel} ${isActive("/") ? styles.active : ""}`}><IoMdHome size={20} /> Domů</div></Link>}</li>
@@ -80,6 +80,6 @@ export default function SideBarContent(params: { user: User | null | undefined }
                     {/* )} */}
                 </ul>
             </div>
-        </section>
+        </div>
     )
 }

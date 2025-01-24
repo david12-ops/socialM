@@ -144,7 +144,7 @@ export default function Navbar(params: { user: User | null | undefined }) {
             <CssBaseline />
             <CustomAppBar>
                 <Toolbar className="nav">
-                    <section className={styles.mainSection}>
+                    <div className={styles.mainSection}>
                         <div className={styles.startSection}>
                             <IconButton
                                 color="info"
@@ -172,7 +172,7 @@ export default function Navbar(params: { user: User | null | undefined }) {
                         <div className={styles.endSection}>
                             <Box className={styles.section}>{navItm}</Box>
                         </div>
-                    </section>
+                    </div>
                 </Toolbar>
             </CustomAppBar>
             <nav>

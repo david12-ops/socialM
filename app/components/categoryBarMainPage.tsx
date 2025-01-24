@@ -18,7 +18,7 @@ export default function CategoryBar() {
     }));
 
     return (
-        <section className={styles.sectionCategoryBar}>
+        <div className={styles.sectionCategoryBar}>
             <ul>
                 <li>{<CostumeCreateButton>Vše</CostumeCreateButton>}</li>
                 <li>{<CostumeCreateButton>Hry</CostumeCreateButton>}</li>
@@ -33,6 +33,6 @@ export default function CategoryBar() {
                 <li>{<CostumeCreateButton>Přehráno</CostumeCreateButton>}</li>
                 <li>{<CostumeCreateButton>Pro vás nové</CostumeCreateButton>}</li>
             </ul>
-        </section>
+        </div>
     )
 }
