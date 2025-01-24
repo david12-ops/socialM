@@ -148,14 +148,9 @@
     flex-direction: column;
     width: 400px;
     height: 300px;
-}
-
-.videoPartCard {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    border-radius: 8px;
-    margin-bottom: 5px
+    transition: background-color 0.2s, transform 0.2s;
+    /* Add smooth hover effects */
+    box-sizing: border-box;
 }
 
 .videoCard:hover {
@@ -163,12 +158,25 @@
     border-radius: 10px;
     padding: 2px;
     cursor: pointer;
+    transform: scale(1.02);
+    /* Slight scale effect */
+}
+
+.videoPartCard {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    /* Ensure content stays within border radius */
 }
 
 .preview {
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
+    border-radius: 8px;
+    /* Match the parent border-radius */
 }
 
 .videoDesPart {
@@ -176,25 +184,24 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    gap: 30px
+    gap: 30px;
+}
+
+.videoTitle,
+.videoDetail {
+    font-family: 'Open Sans', sans-serif;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 300px;
 }
 
 .videoTitle {
-    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 300px
 }
 
 .videoDetail {
-    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 300px
 }
 
 /* kategory bar */

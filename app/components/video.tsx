@@ -6,7 +6,7 @@ export default function Video(params: { avatar: JSX.Element, title: string, chan
     return (
         <section className={styles.videoCard}>
             <div className={styles.videoPartCard}>
-                {image ? <div><img className={styles.preview} src={image} alt={"demo"} /> </div> : <div>Zk</div>}
+                <img className={styles.preview} src={image} alt={"demo"} />
             </div>
             <div className={styles.videoDesPart}>
                 {avatar}

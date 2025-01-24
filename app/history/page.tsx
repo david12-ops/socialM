@@ -52,18 +52,18 @@ export default function HistoryPage() {
                 </div>
                 <section className={styles.section2}>
                     <h2 className={styles.title}>Historie sledování</h2>
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
-                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/public/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                    {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                 </section>
             </section>
         </section>

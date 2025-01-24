@@ -16,18 +16,18 @@ export default function Home() {
         <section>
             {<CategoryBar />}
             <section style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around", gap: "40px" }}>
-                {<Video avatar={dempoAv} title={"Zkouškassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
-                {<Video avatar={dempoAv} title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} timeFromUpload={'2h'} image={"/public/demoPreview.jpg"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={""} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
+                {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
             </section>
         </section>
     );
