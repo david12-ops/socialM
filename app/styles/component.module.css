@@ -149,7 +149,6 @@
     width: 400px;
     height: 300px;
     transition: background-color 0.2s, transform 0.2s;
-    /* Add smooth hover effects */
     box-sizing: border-box;
 }
 
@@ -159,7 +158,6 @@
     padding: 2px;
     cursor: pointer;
     transform: scale(1.02);
-    /* Slight scale effect */
 }
 
 .videoPartCard {
@@ -168,7 +166,6 @@
     border-radius: 8px;
     margin-bottom: 5px;
     overflow: hidden;
-    /* Ensure content stays within border radius */
 }
 
 .preview {
@@ -176,7 +173,6 @@
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    /* Match the parent border-radius */
 }
 
 .videoDesPart {
