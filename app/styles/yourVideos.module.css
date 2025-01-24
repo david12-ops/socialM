@@ -15,6 +15,7 @@
     padding: 12px 15px;
     text-align: left;
     border: 1px solid #ddd;
+    text-align: center;
 }
 
 .videoTable th {
@@ -28,6 +29,7 @@
 .videoInfo {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .videoInfo img {
@@ -57,4 +59,32 @@
 
 .title {
     font-family: 'Segoe UI', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .videoTable thead {
+        display: none;
+    }
+
+    .videoTable,
+    .videoTable tbody,
+    .videoTable tr,
+    .videoTable td {
+        display: block;
+        width: 100%;
+    }
+
+    .videoTable td {
+        position: relative;
+    }
+
+    .videoTable td:before {
+        content: attr(data-label);
+        position: absolute;
+        font-weight: bold;
+    }
+
+    .videoTable td input[type="checkbox"] {
+        position: absolute;
+    }
 }
