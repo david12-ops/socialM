@@ -132,11 +132,6 @@
     cursor: pointer;
 }
 
-.linkLabel:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
 .active {
     background-color: rgba(0, 0, 0, 0.2);
     font-weight: bold;
