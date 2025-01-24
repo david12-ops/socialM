@@ -22,6 +22,7 @@ const Table = () => {
                         <td><input type="checkbox" /></td>
                         <td>
                             <div className={styles.videoInfo}>
+                                <img className={styles.videoImg} src="/demoPreview.jpg" alt="preview" />
                                 <div>
                                     <p>Cvičení - klíčové snímky v obraze a zvuku</p>
                                     <span>Přidat popis</span>
@@ -39,6 +40,7 @@ const Table = () => {
                         <td><input type="checkbox" /></td>
                         <td>
                             <div className={styles.videoInfo}>
+                                <img className={styles.videoImg} src="/demoPreview.jpg" alt="preview" />
                                 <div>
                                     <p>PF Cvičení Chroma key green</p>
                                     <span>Přidat popis</span>
