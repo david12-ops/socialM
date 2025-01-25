@@ -62,7 +62,7 @@ export default function RootLayout({
   const title = getTitleFromPath(pathName)
 
   return (
-    <html lang="cs">
+    <html lang="cs-CZ">
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
