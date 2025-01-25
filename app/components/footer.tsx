@@ -6,41 +6,40 @@ export default function Footer() {
         <div className={styles.footer}>
             <div className={styles.footerContent}>
                 <section className={styles.footerSection}>
-                    <h2>About</h2>
+                    <h2>O nás</h2>
                     <p>
-                        socialM is a popular video-sharing platform where users can upload, view, and share videos. It has grown over the years to become one of the most visited websites globally, with billions of users interacting with videos on a daily basis.
-                    </p>
+                        socialM je platforma pro sdílení videí, kde mohou uživatelé nahrávat, prohlížet a sdílet videa. V průběhu let se rozrostla a stala se jednou z celosvětově nejnavštěvovanějších webových stránek s miliardami uživatelů, kteří denně interagují s videi.                    </p>
                 </section>
 
                 <section className={styles.footerSection}>
-                    <h2>Quick Links</h2>
+                    <h2>Rychlé odkazy</h2>
                     <ul>
                         <li>
                             <Link href="/">
-                                Home
+                                Domů
                             </Link>
                         </li>
                         <li>
                             <Link href="/">
-                                Trending
+                                Trendy
                             </Link>
                         </li>
                         <li>
                             <Link href="/">
-                                Subscriptions
+                                Odběry
                             </Link>
                         </li>
                         <li>
                             <Link href="/">
-                                Privacy
+                                Soukromí
                             </Link>
                         </li>
                     </ul>
                 </section>
 
                 <section className={styles.footerSection}>
-                    <h2>Follow Us</h2>
-                    <ul className="social-links">
+                    <h2>Sleduj nás na</h2>
+                    <ul className={styles.socialLinks}>
                         <li>
                             <Link href="https://www.facebook.com">
                                 Facebook
@@ -58,10 +57,21 @@ export default function Footer() {
                         </li>
                     </ul>
                 </section>
+
+                <section className={styles.footerSection}>
+                    <h2>Prohlédnout aktualizace</h2>
+                    <ul>
+                        <li>
+                            <Link href="/updates">
+                                Aktualizace a funkce
+                            </Link>
+                        </li>
+                    </ul>
+                </section>
             </div>
 
             <div className={styles.footerBottom}>
-                <p>&copy; socialM. All rights reserved.</p>
+                <p>&copy; socialM. Všechna práva vyhrazena.</p>
             </div>
         </div>
     )
