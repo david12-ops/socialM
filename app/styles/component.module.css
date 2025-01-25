@@ -236,7 +236,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
-    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -312,6 +311,14 @@
         gap: 15px;
     }
 
+    .footerContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        gap: 20px;
+    }
+
     .videoCard {
         width: 305px;
         height: 305px;
@@ -350,6 +357,14 @@
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
     .mainSection {
         flex-direction: column;
+        gap: 20px;
+    }
+
+    .footerContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 30px;
         gap: 20px;
     }
 
