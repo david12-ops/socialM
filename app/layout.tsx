@@ -41,6 +41,7 @@ const getTitleFromPath = (pathName: string | null) => {
     "/changePassword": "Změna hesla",
     "/changeEmail": "Změna emailu",
     "/login": "Přihlásit se",
+    "/updates": "Aktualizace"
   };
 
   return pathTitles[pathName as string] || "socialM";
