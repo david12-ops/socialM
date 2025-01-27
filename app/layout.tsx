@@ -81,13 +81,14 @@ export default function RootLayout({
             <CacheProvider value={emotionCache}>
               <ThemeProvider theme={themes.lightTheme}>
                 <CssBaseline />
-                <main style={{ paddingBottom: "60px" }}>
+                <main>
                   {children}
                 </main>
               </ThemeProvider>
             </CacheProvider>
           </ApolloProvider>
         </AuthContextProvider>
+        {pathName === "/" && (<div style={{ padding: "16px" }}></div>)}
         {pathName === "/" && (
           <footer>
             <Footer />
