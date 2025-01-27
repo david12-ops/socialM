@@ -47,6 +47,10 @@ const getTitleFromPath = (pathName: string | null) => {
   return pathTitles[pathName as string] || "socialM";
 };
 
+const Spacer = ({ height }: { height: string | number }) => (
+  <div style={{ height }} />
+);
+
 const Navbar = dynamic(() => import('./components/navBar'), { ssr: false });
 const Footer = dynamic(() => import('./components/footer'), { ssr: false });
 
@@ -84,11 +88,11 @@ export default function RootLayout({
                 <main>
                   {children}
                 </main>
+                {pathName === "/" && (<div style={{ padding: "16px" }}></div>)}
               </ThemeProvider>
             </CacheProvider>
           </ApolloProvider>
         </AuthContextProvider>
-        {pathName === "/" && (<div style={{ padding: "16px" }}></div>)}
         {pathName === "/" && (
           <footer>
             <Footer />
