@@ -48,6 +48,7 @@ const getTitleFromPath = (pathName: string | null) => {
 };
 
 const Navbar = dynamic(() => import('./components/navBar'), { ssr: false });
+const Footer = dynamic(() => import('./components/footer'), { ssr: false });
 
 // eslint-disable-next-line import/no-default-export
 export default function RootLayout({
@@ -80,13 +81,18 @@ export default function RootLayout({
             <CacheProvider value={emotionCache}>
               <ThemeProvider theme={themes.lightTheme}>
                 <CssBaseline />
-                <main>
+                <main style={{ paddingBottom: "60px" }}>
                   {children}
                 </main>
               </ThemeProvider>
             </CacheProvider>
           </ApolloProvider>
         </AuthContextProvider>
+        {pathName === "/" && (
+          <footer>
+            <Footer />
+          </footer>
+        )}
       </body>
     </html>
   );

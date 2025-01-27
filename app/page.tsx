@@ -6,8 +6,6 @@ import dynamic from "next/dynamic";
 
 const CategoryBar = dynamic(() => import('./components/categoryBarMainPage'), { ssr: false })
 const Video = dynamic(() => import('./components/video'), { ssr: false });
-const Footer = dynamic(() => import('./components/footer'), { ssr: false });
-
 
 // eslint-disable-next-line import/no-default-export
 export default function Home() {
@@ -30,9 +28,6 @@ export default function Home() {
                 {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                 {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
                 {<Video title={"Zkouška"} channelName={"Demo"} viewsCount={'2 tis.'} image={"/demoPreview.jpg"} avatar={dempoAv} timeFromUpload={"2h"} />}
-            </div>
-            <div style={{ paddingTop: "60px" }}>
-                <Footer />
             </div>
         </div>
 
