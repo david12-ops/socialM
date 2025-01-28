@@ -70,9 +70,8 @@ export default function RootLayout({
   return (
     <html lang="cs-CZ">
       <Head key={title}>
-        <title>{title || "socialM"}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="UTF-8"></meta>
+        <title>{title}</title>
+        <meta charSet="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
