@@ -77,6 +77,7 @@ export default function RootLayout({
     <html lang="cs">
       <Head>
         <meta charSet="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="Content-Language" content="cs" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
