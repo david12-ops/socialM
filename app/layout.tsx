@@ -19,6 +19,7 @@ import { CacheProvider } from '@emotion/react';
 import darkThemeOptions from './styles/theme/darkThemeOptions';
 import { usePathname } from 'next/navigation';
 import Head from 'next/head';
+import { useEffect, useMemo, useState } from 'react';
 
 
 interface MyAppProps {
@@ -47,10 +48,6 @@ const getTitleFromPath = (pathName: string | null) => {
   return pathTitles[pathName as string] || "socialM";
 };
 
-const Spacer = ({ height }: { height: string | number }) => (
-  <div style={{ height }} />
-);
-
 const Navbar = dynamic(() => import('./components/navBar'), { ssr: false });
 const Footer = dynamic(() => import('./components/footer'), { ssr: false });
 
@@ -62,15 +59,23 @@ export default function RootLayout({
 }) {
 
   const { emotionCache, themes } = props;
-  const { user } = useAuthContext()
-  const apolloClient = getApolloClient({ forceNew: false });
   const pathName = usePathname()
-  const title = getTitleFromPath(pathName)
+
+  useEffect(() => {
+    const title = getTitleFromPath(pathName);
+    document.title = title;
+
+    return () => {
+      document.title = 'socialM';
+    };
+  }, [pathName]);
+
+  const { user } = useAuthContext()
+  const apolloClient = useMemo(() => getApolloClient({ forceNew: false }), []);
 
   return (
-    <html lang="cs-CZ">
-      <Head key={title}>
-        <title>{title}</title>
+    <html lang='cs-CZ'>
+      <Head>
         <meta charSet="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
